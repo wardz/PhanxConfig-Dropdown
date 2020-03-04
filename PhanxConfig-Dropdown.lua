@@ -73,7 +73,7 @@ hooksecurefunc("ToggleDropDownMenu", CloseDropdowns)
 local function Frame_OnEnter(self)
 	if self.OnEnter then
 		self:OnEnter()
-	elseif self.tooltipText then
+	elseif self.tooltipText and not GameTooltip:IsForbidden() then
 		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 		GameTooltip:SetText(self.tooltipText, nil, nil, nil, nil, true)
 		GameTooltip:Show()
@@ -84,7 +84,9 @@ local function Frame_OnLeave(self)
 	if self.OnLeave then
 		self:OnLeave()
 	else
-		GameTooltip:Hide()
+		if not GameTooltip:IsForbidden() then
+			GameTooltip:Hide()
+		end
 	end
 end
 
