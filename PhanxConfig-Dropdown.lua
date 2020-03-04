@@ -118,12 +118,7 @@ end
 local function CreateListButton(parent)
 	local button = CreateFrame("Button", nil, parent)
 	button:SetHeight(UIDROPDOWNMENU_BUTTON_HEIGHT)
---[[
-	local bg = button:CreateTexture(nil, "BACKGROUND")
-	bg:SetPoint("BOTTOMLEFT", 1, 1)
-	bg:SetPoint("TOPRIGHT", -1, -1)
-	bg:SetTexture(0, 128, 255, 0.25)
-]]
+
 	local label = button:CreateFontString(nil, "OVERLAY")
 	label:SetPoint("LEFT", 27, 0)
 	label:SetFont((GameFontHighlightSmallLeft:GetFont()), UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT)
@@ -368,11 +363,7 @@ function lib:New(parent, name, tooltipText, items, keepShownOnClick)
 	dropdown:SetScript("OnEnter", Frame_OnEnter)
 	dropdown:SetScript("OnLeave", Frame_OnLeave)
 	dropdown:SetScript("OnHide", Frame_OnHide)
---[[
-	dropdown.bg = dropdown:CreateTexture(nil, "BACKGROUND")
-	dropdown.bg:SetAllPoints(true)
-	dropdown.bg:SetTexture(0, 0.5, 0, 0.5)
-]]
+
 	local left = dropdown:CreateTexture(nil, "BORDER")
 	left:SetPoint("TOPLEFT", dropdown, "BOTTOMLEFT", -16, 47)
 	left:SetSize(25, 64)
