@@ -1,19 +1,15 @@
 --[[--------------------------------------------------------------------
-	PhanxConfig-Dropdown
-	Simple scrolling dropdown widget generator. Requires LibStub.
+	WardzConfig-Dropdown, a fork of PhanxConfig-Dropdown which is no longer maintained.
+	(Renamed as requested from the original author)
+
 	https://github.com/Phanx/PhanxConfig-Dropdown
-	Copyright (c) 2009-2016 Phanx <addons@phanx.net>. All rights reserved.
-	Feel free to include copies of this file WITHOUT CHANGES inside World of
-	Warcraft addons that make use of it as a library, and feel free to use code
-	from this file in other projects as long as you DO NOT use my name or the
-	original name of this file anywhere in your project outside of an optional
-	credits line -- any modified versions must be renamed to avoid conflicts.
+	https://github.com/wardz/PhanxConfig-Dropdown
 ----------------------------------------------------------------------]]
 
-local MINOR_VERSION = 20200219
+local MAJOR_VERSION, MINOR_VERSION = "WardzConfigDropdown-1.0", 1
 
-local lib, oldminor = LibStub:NewLibrary("PhanxConfig-Dropdown", MINOR_VERSION)
-if not lib then return end
+local lib = assert(LibStub, MAJOR_VERSION .. " requires LibStub"):NewLibrary(MAJOR_VERSION, MINOR_VERSION)
+if not lib then return end -- Already loaded or failed
 
 lib.listFrames = lib.listFrames or {}
 
@@ -258,7 +254,7 @@ function CreateList(dropdown) -- local
 
 	id = id + 1
 
-	local list = CreateFrame("Button", "PhanxConfigDropdown" .. id, dropdown)
+	local list = CreateFrame("Button", MAJOR_VERSION .. id, dropdown)
 	list:SetFrameStrata("DIALOG")
 	list:SetToplevel(true)
 	list:Hide()
@@ -364,7 +360,7 @@ end
 ------------------------------------------------------------------------
 
 function lib:New(parent, name, tooltipText, items, keepShownOnClick)
-	assert(type(parent) == "table" and type(rawget(parent, 0)) == "userdata", "PhanxConfig-Dropdown: parent must be a frame")
+	assert(type(parent) == "table" and type(rawget(parent, 0)) == "userdata", format("%s: parent must be a frame", MAJOR_VERSION))
 
 	local dropdown = CreateFrame("Frame", nil, parent)
 	dropdown:SetSize(200, 48)
